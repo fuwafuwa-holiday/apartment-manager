@@ -1,7 +1,7 @@
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import Layout from '@/components/Layout';
 import z from 'zod';
-import type { Apartment, Tenant as PTenant, Room as PRoom } from '@prisma/client';
+import type { Apartment, Tenant as PTenant, Room as PRoom } from '@/types';
 import { Box } from '@mui/material';
 import ButtonLink from '@/components/ButtonLink';
 import { client, nextClient } from '@/trpc';

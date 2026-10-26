@@ -10,7 +10,7 @@ import Loading from '@/components/page/Loading';
 import z from 'zod';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
-import { Tenant as PTenant, Invoice, Room as PRoom, Apartment } from '@prisma/client';
+import { Tenant as PTenant, Invoice, Room as PRoom, Apartment } from '@/types';
 
 type Room = PRoom & {
   apartment: Apartment;

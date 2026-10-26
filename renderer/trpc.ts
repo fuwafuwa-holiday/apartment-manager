@@ -1,36 +1,22 @@
-import { createTRPCProxyClient, OperationLink, TRPCClientError, TRPCLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
-import { AppRouter } from '../electron-src/trpc';
-import { AnyRouter } from '@trpc/server';
-import { observable } from '@trpc/server/observable';
+import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 import superjson from 'superjson';
+import type { AppRouter } from '../worker/routers';
 
-const ipcLink = <TRouter extends AnyRouter>(): TRPCLink<TRouter> => {
-  return (runtime): OperationLink<TRouter> => {
-    return ({ op }) =>
-      observable((observer) => {
-        window
-          .trpc({ ...op, ctx: {}, input: undefined, rawInput: op.input })
-          .then((res: any) => {
-            observer.next({
-              context: {},
-              result: { data: res },
-            });
-            observer.complete();
-          })
-          .catch((cause: any) => observer.error(TRPCClientError.from(cause)));
+/**
+ * API の URL。既定は同一オリジン (Worker が静的アセットと API を同時に配信)。
+ * `next dev` で Worker を別ポートに立てる場合は
+ *   NEXT_PUBLIC_API_URL=http://localhost:8787/api/trpc next dev renderer
+ * のように指定する。
+ */
+const url = process.env.NEXT_PUBLIC_API_URL ?? '/api/trpc';
 
-        return () => {};
-      });
-  };
-};
-
-// global.ipcRenderer.send('message', 'hi from next');
+const links = [httpBatchLink({ url })];
 
 export const nextClient = createTRPCNext<AppRouter>({
-  config({ ctx }) {
+  config() {
     return {
-      links: [ipcLink()],
+      links,
       transformer: superjson,
     };
   },
@@ -38,6 +24,6 @@ export const nextClient = createTRPCNext<AppRouter>({
 });
 
 export const client = createTRPCProxyClient<AppRouter>({
-  links: [ipcLink()],
+  links,
   transformer: superjson,
 });

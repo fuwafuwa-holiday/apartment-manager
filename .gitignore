@@ -37,6 +37,7 @@ yarn-error.log*
 
 renderer/.next
 renderer/out
-dist
-prisma/dev.db
-main
+
+# cloudflare
+.wrangler
+.dev.vars

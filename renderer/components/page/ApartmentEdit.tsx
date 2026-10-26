@@ -7,7 +7,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import TextField from '@/components/form/TextField';
 import FormGroup from '@/components/FromGroup';
 import FloatingControls from '@/components/FloatingControls';
-import { Apartment as PApartment, Room as PRoom } from '@prisma/client';
+import { Apartment as PApartment, Room as PRoom } from '@/types';
 import Container from '@/components/Container';
 import { useObjectState, useSubmit } from '@/hooks';
 import Section from '../Section';

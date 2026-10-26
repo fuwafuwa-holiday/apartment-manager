@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import type { Apartment as PApartment, Room as PRoom } from '@prisma/client';
+import type { Apartment as PApartment, Room as PRoom } from '@/types';
 import Layout from '@/components/Layout';
 import ButtonLink from '@/components/ButtonLink';
 import { nextClient } from '@/trpc';

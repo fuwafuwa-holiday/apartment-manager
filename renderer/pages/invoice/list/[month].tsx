@@ -31,7 +31,7 @@ import { client, nextClient } from '@/trpc';
 import Container from '@/components/Container';
 import { configurePage } from '@/components/page/Page';
 import Loading from '@/components/page/Loading';
-import { Tenant as PTenant, Invoice as PInvoice, Room as PRoom, Apartment as PApartment } from '@prisma/client';
+import { Tenant as PTenant, Invoice as PInvoice, Room as PRoom, Apartment as PApartment } from '@/types';
 import Controls from '@/components/Controls';
 import dayjs from 'dayjs';
 import SaveIcon from '@mui/icons-material/Save';

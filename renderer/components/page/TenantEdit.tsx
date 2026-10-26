@@ -9,7 +9,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import Container from '@/components/Container';
 import { useObjectState, useSubmit } from '@/hooks';
 import NumberTextField from '../form/NumberTextField';
-import { Apartment, Room, Tenant as PTenant } from '@prisma/client';
+import { Apartment, Room, Tenant as PTenant } from '@/types';
 import { dateToForm, formToDate, formToNum, numToForm } from '@/util';
 import dayjs from 'dayjs';
 
